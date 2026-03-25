@@ -130,7 +130,7 @@
   .supervisor-wrap { display:flex; justify-content:center; margin-bottom:2.5rem; }
   .supervisor-card { background:var(--card); border:2px solid rgba(0,229,255,0.35); border-radius:20px; padding:2rem 3rem; text-align:center; min-width:220px; transition:all .3s; }
   .supervisor-card:hover { transform:translateY(-4px); box-shadow:var(--glow); }
-  .supervisor-avatar { width:140px; height:140px; border-radius:50%; margin:0 auto 1rem; border:4px solid var(--accent); object-fit:cover; display:block; background:linear-gradient(135deg,var(--accent3),var(--accent)); }
+  .supervisor-avatar { width:140px; height:140px; border-radius:50%; margin:0 auto 1rem; border:4px solid var(--accent); object-fit:cover; display:block; background:linear-gradient(135deg,var(--accent3),var(--accent)); padding:4px; box-shadow: 0 0 0 3px var(--card); }
   .supervisor-avatar-placeholder { width:140px; height:140px; border-radius:50%; margin:0 auto 1rem; border:4px solid var(--accent); background:linear-gradient(135deg,var(--accent3),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:3rem; }
   .supervisor-name { font-weight:900; font-size:1.1rem; margin-bottom:.3rem; color:var(--accent); }
   .supervisor-role { color:var(--muted); font-size:.85rem; }
@@ -399,7 +399,7 @@ const lessons = [
   {
     title: "الدرس الأول: مقدمة في الأمن السيبراني",
     sub: "ما هو الأمن السيبراني؟ التهديدات الرقمية الأساسية",
-    video: "https://www.youtube.com/embed/aaUiHByGDIQ",
+    video: "https://www.youtube.com/embed/WXgfVRNDZlA",
     ytSearch: "https://www.youtube.com/results?search_query=%D9%85%D9%82%D8%AF%D9%85%D8%A9+%D8%A7%D9%84%D8%A3%D9%85%D9%86+%D8%A7%D9%84%D8%B3%D9%8A%D8%A8%D8%B1%D8%A7%D9%86%D9%8A+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
     preQuiz: [
       { q:"الأمن السيبراني يهتم فقط بحماية الأجهزة المادية.",         ans:false },
@@ -439,7 +439,7 @@ const lessons = [
   {
     title: "الدرس الثاني: كلمات المرور والمصادقة الثنائية",
     sub: "كيف تصنع كلمة مرور لا تُكسر وتفعّل حماية إضافية",
-    video: "https://www.youtube.com/embed/aEmXuDdv9YU?hl=ar",
+    video: "https://www.youtube.com/embed/D4Z_5TB_xiw",
     ytSearch: "https://www.youtube.com/results?search_query=%D9%83%D9%84%D9%85%D8%A9+%D9%85%D8%B1%D9%88%D8%B1+%D9%82%D9%88%D9%8A%D8%A9+%D9%85%D8%B5%D8%A7%D8%AF%D9%82%D8%A9+%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
     preQuiz: [
       { q:"يكفي أن تكون كلمة المرور مكونة من 4 أرقام فقط.",                    ans:false },
@@ -480,7 +480,7 @@ const lessons = [
   {
     title: "الدرس الثالث: التصيد الاحتيالي (Phishing)",
     sub: "كيف تكتشف رسائل التصيد وتحمي نفسك منها",
-    video: "https://www.youtube.com/embed/XBkzBrXlle0",
+    video: "https://www.youtube.com/embed/L7quoYNnD5Q",
     ytSearch: "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%AA%D8%B5%D9%8A%D8%AF+%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D9%84%D9%8A+Phishing+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
     preQuiz: [
       { q:"التصيد الاحتيالي يعتمد على انتحال شخصية جهة موثوقة.",                ans:true  },
@@ -521,7 +521,7 @@ const lessons = [
   {
     title: "الدرس الرابع: أمان الشبكات والـ VPN",
     sub: "التصفح الآمن، الـ Wi-Fi العام، وفهم الـ VPN",
-    video: "https://www.youtube.com/embed/R-JUOpCgTZc",
+    video: "https://www.youtube.com/embed/C4IHTdHYHuI",
     ytSearch: "https://www.youtube.com/results?search_query=%D8%A3%D9%85%D8%A7%D9%86+%D8%A7%D9%84%D8%B4%D8%A8%D9%83%D8%A7%D8%AA+VPN+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
     preQuiz: [
       { q:"الاتصال بشبكة Wi-Fi عامة يمكن أن يعرض بياناتك للسرقة.",              ans:true  },
@@ -564,7 +564,7 @@ const lessons = [
   {
     title: "الدرس الخامس: البرامج الخبيثة والحماية منها",
     sub: "أنواع البرامج الضارة وكيف تحمي جهازك وبياناتك",
-    video: "https://www.youtube.com/embed/n8mbzU0X2nQ",
+    video: "https://www.youtube.com/embed/oBxe-tkN4NA",
     ytSearch: "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D9%85%D8%AC+%D8%A7%D9%84%D8%AE%D8%A8%D9%8A%D8%AB%D8%A9+%D9%88%D8%A7%D9%84%D8%AD%D9%85%D8%A7%D9%8A%D8%A9+%D9%85%D9%86%D9%87%D8%A7+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
     preQuiz: [
       { q:"الفيروس (Virus) ينتشر عند تشغيل الملفات المصابة.",                    ans:true  },
