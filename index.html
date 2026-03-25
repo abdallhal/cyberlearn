@@ -29,7 +29,6 @@
     overflow-x: hidden;
   }
 
-  /* ── GRID BG ── */
   body::before {
     content:'';
     position:fixed; inset:0;
@@ -40,7 +39,7 @@
     pointer-events:none; z-index:0;
   }
 
-  /* ── NAV ── */
+  /* NAV */
   nav {
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; justify-content:space-between; align-items:center;
@@ -49,379 +48,156 @@
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
-
-  .logo {
-    font-size: 1.6rem; font-weight:900;
-    color: var(--accent);
-    letter-spacing:-1px;
-    display:flex; align-items:center; gap:.4rem;
-  }
-  .logo span { color: var(--accent2); }
-
+  .logo { font-size:1.6rem; font-weight:900; color:var(--accent); letter-spacing:-1px; display:flex; align-items:center; gap:.4rem; }
+  .logo span { color:var(--accent2); }
   .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a {
-    color: var(--muted); text-decoration:none;
-    font-size:.9rem; font-weight:600;
-    transition: color .3s;
-    position:relative;
-  }
-  .nav-links a::after {
-    content:'';
-    position:absolute; bottom:-4px; right:0; left:0;
-    height:2px; background:var(--accent);
-    transform:scaleX(0); transition:transform .3s;
-  }
-  .nav-links a:hover { color:var(--accent); }
-  .nav-links a:hover::after { transform:scaleX(1); }
-  .nav-links a.active { color:var(--accent); }
-  .nav-links a.active::after { transform:scaleX(1); }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:.9rem; font-weight:600; transition:color .3s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; right:0; left:0; height:2px; background:var(--accent); transform:scaleX(0); transition:transform .3s; }
+  .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform:scaleX(1); }
 
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display:flex; flex-direction:column;
-    justify-content:center; align-items:center;
-    text-align:center;
-    padding: 8rem 2rem 4rem;
-    position:relative; overflow:hidden;
-  }
+  /* TICKER */
+  .ticker { background:rgba(0,229,255,0.05); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:.6rem 0; overflow:hidden; font-family:'Space Mono'; font-size:.75rem; color:var(--accent); white-space:nowrap; }
+  .ticker-inner { display:inline-block; animation:ticker 25s linear infinite; }
+  @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-  .hero-orb {
-    position:absolute;
-    border-radius:50%;
-    filter:blur(80px);
-    pointer-events:none;
-  }
+  /* HERO */
+  #hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:8rem 2rem 4rem; position:relative; overflow:hidden; }
+  .hero-orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
   .orb1 { width:500px; height:500px; background:rgba(0,229,255,0.07); top:-100px; right:-100px; }
   .orb2 { width:400px; height:400px; background:rgba(255,59,107,0.06); bottom:-50px; left:-80px; }
   .orb3 { width:300px; height:300px; background:rgba(124,58,237,0.08); top:30%; left:50%; transform:translateX(-50%); }
-
-  .badge {
-    display:inline-flex; align-items:center; gap:.5rem;
-    background:rgba(0,229,255,0.1);
-    border:1px solid rgba(0,229,255,0.3);
-    color:var(--accent); font-size:.8rem; font-weight:700;
-    padding:.4rem 1rem; border-radius:100px;
-    margin-bottom:1.5rem;
-    letter-spacing:2px; text-transform:uppercase;
-    animation: fadeUp .8s ease both;
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    font-weight:900; line-height:1.1;
-    animation: fadeUp .8s .1s ease both;
-  }
-  .hero-title .hl { color:var(--accent); position:relative; }
+  .badge { display:inline-flex; align-items:center; gap:.5rem; background:rgba(0,229,255,0.1); border:1px solid rgba(0,229,255,0.3); color:var(--accent); font-size:.8rem; font-weight:700; padding:.4rem 1rem; border-radius:100px; margin-bottom:1.5rem; letter-spacing:2px; text-transform:uppercase; animation:fadeUp .8s ease both; }
+  .hero-title { font-size:clamp(2.5rem,7vw,5rem); font-weight:900; line-height:1.1; animation:fadeUp .8s .1s ease both; }
+  .hero-title .hl { color:var(--accent); }
   .hero-title .hl2 { color:var(--accent2); }
-
-  .hero-sub {
-    font-size:1.1rem; color:var(--muted);
-    max-width:550px; margin:1.2rem auto 2.5rem;
-    line-height:1.8;
-    animation: fadeUp .8s .2s ease both;
-  }
-
-  .hero-cta {
-    display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
-    animation: fadeUp .8s .3s ease both;
-  }
-
-  .btn {
-    padding:.85rem 2rem; border-radius:8px;
-    font-family:'Cairo',sans-serif; font-weight:700; font-size:1rem;
-    cursor:pointer; text-decoration:none; border:none;
-    transition: all .3s; display:inline-flex; align-items:center; gap:.5rem;
-  }
-  .btn-primary {
-    background:var(--accent); color:#000;
-    box-shadow: 0 0 25px rgba(0,229,255,0.4);
-  }
-  .btn-primary:hover {
-    box-shadow: 0 0 45px rgba(0,229,255,0.6);
-    transform:translateY(-2px);
-  }
-  .btn-outline {
-    background:transparent; color:var(--text);
-    border:1px solid rgba(255,255,255,0.2);
-  }
-  .btn-outline:hover {
-    background:rgba(255,255,255,0.05);
-    border-color:rgba(255,255,255,0.4);
-    transform:translateY(-2px);
-  }
-
-  .hero-stats {
-    display:flex; gap:3rem; margin-top:4rem; justify-content:center;
-    animation: fadeUp .8s .4s ease both;
-  }
+  .hero-sub { font-size:1.1rem; color:var(--muted); max-width:550px; margin:1.2rem auto 2.5rem; line-height:1.8; animation:fadeUp .8s .2s ease both; }
+  .hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeUp .8s .3s ease both; }
+  .btn { padding:.85rem 2rem; border-radius:8px; font-family:'Cairo',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; text-decoration:none; border:none; transition:all .3s; display:inline-flex; align-items:center; gap:.5rem; }
+  .btn-primary { background:var(--accent); color:#000; box-shadow:0 0 25px rgba(0,229,255,0.4); }
+  .btn-primary:hover { box-shadow:0 0 45px rgba(0,229,255,0.6); transform:translateY(-2px); }
+  .btn-outline { background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.2); }
+  .btn-outline:hover { background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.4); transform:translateY(-2px); }
+  .hero-stats { display:flex; gap:3rem; margin-top:4rem; justify-content:center; animation:fadeUp .8s .4s ease both; }
   .stat { text-align:center; }
   .stat-num { font-size:2.2rem; font-weight:900; color:var(--accent); font-family:'Space Mono'; }
   .stat-lbl { font-size:.8rem; color:var(--muted); }
 
-  /* ── SECTION ── */
+  /* SECTIONS */
   section { position:relative; z-index:1; }
-
-  .section-header {
-    text-align:center; margin-bottom:3rem;
-  }
-  .section-header h2 {
-    font-size:2.2rem; font-weight:900;
-    margin-bottom:.5rem;
-  }
+  .section-header { text-align:center; margin-bottom:3rem; }
+  .section-header h2 { font-size:2.2rem; font-weight:900; margin-bottom:.5rem; }
   .section-header p { color:var(--muted); font-size:1rem; }
-  .line {
-    width:60px; height:3px;
-    background:linear-gradient(90deg, var(--accent), var(--accent2));
-    margin:.8rem auto 0; border-radius:2px;
-  }
+  .line { width:60px; height:3px; background:linear-gradient(90deg,var(--accent),var(--accent2)); margin:.8rem auto 0; border-radius:2px; }
 
-  /* ── COURSES ── */
-  #courses {
-    padding: 5rem 2rem;
-  }
-
-  .courses-grid {
-    display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap:1.5rem;
-    max-width:1100px; margin:0 auto;
-  }
-
-  .course-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    overflow:hidden;
-    transition: all .35s;
-    cursor:pointer;
-    position:relative;
-  }
-  .course-card::before {
-    content:'';
-    position:absolute; inset:0;
-    background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent);
-    opacity:0; transition:opacity .3s;
-    pointer-events:none;
-  }
-  .course-card:hover { transform:translateY(-6px); border-color:rgba(0,229,255,0.4); box-shadow: var(--glow); }
+  /* COURSES GRID */
+  #courses { padding:5rem 2rem; }
+  .courses-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.5rem; max-width:1100px; margin:0 auto; }
+  .course-card { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; transition:all .35s; cursor:pointer; position:relative; }
+  .course-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,229,255,0.04),transparent); opacity:0; transition:opacity .3s; pointer-events:none; }
+  .course-card:hover { transform:translateY(-6px); border-color:rgba(0,229,255,0.4); box-shadow:var(--glow); }
   .course-card:hover::before { opacity:1; }
-
-  .card-thumb {
-    width:100%; height:180px; object-fit:cover;
-    display:block;
-  }
-  .card-thumb-placeholder {
-    width:100%; height:180px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:3rem;
-  }
-
+  .card-thumb { width:100%; height:180px; object-fit:cover; display:block; }
+  .card-thumb-placeholder { width:100%; height:180px; display:flex; align-items:center; justify-content:center; font-size:3rem; }
   .card-body { padding:1.4rem; }
-
-  .card-tag {
-    display:inline-block;
-    background:rgba(0,229,255,0.1); color:var(--accent);
-    font-size:.7rem; font-weight:700; letter-spacing:1px;
-    padding:.25rem .7rem; border-radius:100px;
-    text-transform:uppercase; margin-bottom:.8rem;
-    border:1px solid rgba(0,229,255,0.2);
-  }
+  .card-tag { display:inline-block; background:rgba(0,229,255,0.1); color:var(--accent); font-size:.7rem; font-weight:700; letter-spacing:1px; padding:.25rem .7rem; border-radius:100px; text-transform:uppercase; margin-bottom:.8rem; border:1px solid rgba(0,229,255,0.2); }
   .card-tag.red { background:rgba(255,59,107,0.1); color:var(--accent2); border-color:rgba(255,59,107,0.2); }
   .card-tag.purple { background:rgba(124,58,237,0.1); color:#a78bfa; border-color:rgba(124,58,237,0.2); }
-
   .card-title { font-size:1.15rem; font-weight:700; margin-bottom:.5rem; line-height:1.4; }
   .card-desc { color:var(--muted); font-size:.88rem; line-height:1.7; margin-bottom:1.2rem; }
-
-  .card-meta {
-    display:flex; justify-content:space-between; align-items:center;
-    border-top:1px solid var(--border); padding-top:1rem;
-    font-size:.8rem; color:var(--muted);
-  }
-  .card-meta span { display:flex; align-items:center; gap:.3rem; }
-
-  .card-btn {
-    width:100%; margin-top:1rem;
-    padding:.7rem; background:rgba(0,229,255,0.08);
-    border:1px solid rgba(0,229,255,0.2); border-radius:8px;
-    color:var(--accent); font-family:'Cairo',sans-serif;
-    font-weight:700; font-size:.9rem;
-    cursor:pointer; transition:all .3s;
-  }
+  .card-meta { display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:1rem; font-size:.8rem; color:var(--muted); }
+  .card-btn { width:100%; margin-top:1rem; padding:.7rem; background:rgba(0,229,255,0.08); border:1px solid rgba(0,229,255,0.2); border-radius:8px; color:var(--accent); font-family:'Cairo',sans-serif; font-weight:700; font-size:.9rem; cursor:pointer; transition:all .3s; }
   .card-btn:hover { background:rgba(0,229,255,0.15); }
 
-  /* ── LESSON MODAL ── */
-  .overlay {
-    display:none; position:fixed; inset:0; z-index:200;
-    background:rgba(3,11,20,0.95);
-    backdrop-filter:blur(10px);
-    overflow-y:auto;
-    padding:2rem;
-  }
-  .overlay.open { display:block; animation: fadeIn .3s ease; }
-
-  .modal {
-    max-width:860px; margin:0 auto;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:20px;
-    overflow:hidden;
-  }
-
-  .modal-header {
-    padding:1.5rem 2rem;
-    display:flex; justify-content:space-between; align-items:flex-start;
-    border-bottom:1px solid var(--border);
-    background:rgba(0,229,255,0.03);
-  }
-  .modal-title { font-size:1.4rem; font-weight:800; }
-  .modal-sub { color:var(--muted); font-size:.85rem; margin-top:.3rem; }
-
-  .close-btn {
-    background:rgba(255,255,255,0.05); border:none;
-    color:var(--text); width:36px; height:36px;
-    border-radius:8px; cursor:pointer; font-size:1.1rem;
-    display:flex; align-items:center; justify-content:center;
-    transition:background .3s; flex-shrink:0;
-  }
-  .close-btn:hover { background:rgba(255,59,107,0.2); color:var(--accent2); }
-
-  .modal-body { padding:2rem; }
-
-  .video-wrap {
-    position:relative; padding-top:56.25%;
-    border-radius:12px; overflow:hidden;
-    margin-bottom:1.5rem;
-    border:1px solid var(--border);
-    background:#000;
-  }
-  .video-wrap iframe {
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    border:none;
-  }
-
-  .lesson-content h3 {
-    font-size:1.1rem; font-weight:700;
-    color:var(--accent); margin:1.5rem 0 .7rem;
-    display:flex; align-items:center; gap:.5rem;
-  }
-  .lesson-content p { color:var(--muted); line-height:1.9; font-size:.95rem; }
-  .lesson-content ul { padding-right:1.2rem; }
-  .lesson-content li { color:var(--muted); margin-bottom:.4rem; line-height:1.8; font-size:.95rem; }
-
-  .tip-box {
-    background:rgba(0,229,255,0.06);
-    border:1px solid rgba(0,229,255,0.2);
-    border-right:3px solid var(--accent);
-    border-radius:8px; padding:1rem 1.2rem;
-    margin:1.2rem 0;
-    font-size:.9rem; line-height:1.7;
-  }
-  .tip-box.red {
-    background:rgba(255,59,107,0.06);
-    border-color:rgba(255,59,107,0.2);
-    border-right-color:var(--accent2);
-  }
-
-  /* ── ABOUT ── */
-  #about {
-    padding:5rem 2rem;
-    background:linear-gradient(180deg, transparent, rgba(0,229,255,0.02), transparent);
-  }
-
-  .about-grid {
-    max-width:1000px; margin:0 auto;
-    display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;
-  }
-
+  /* ABOUT */
+  #about { padding:5rem 2rem; background:linear-gradient(180deg,transparent,rgba(0,229,255,0.02),transparent); }
+  .about-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
   .about-text h2 { font-size:2rem; font-weight:900; margin-bottom:1rem; }
   .about-text p { color:var(--muted); line-height:1.9; margin-bottom:1rem; }
-
   .feature-list { list-style:none; }
-  .feature-list li {
-    display:flex; align-items:center; gap:.8rem;
-    padding:.6rem 0; border-bottom:1px solid var(--border);
-    font-size:.9rem;
-  }
+  .feature-list li { display:flex; align-items:center; gap:.8rem; padding:.6rem 0; border-bottom:1px solid var(--border); font-size:.9rem; }
   .feature-list li:last-child { border:none; }
   .feat-icon { color:var(--accent); font-size:1rem; }
-
-  .about-visual {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px; padding:2rem;
-    text-align:center;
-  }
+  .about-visual { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; text-align:center; }
   .shield { font-size:5rem; margin-bottom:1rem; }
   .about-visual h3 { font-size:1.2rem; font-weight:700; margin-bottom:.8rem; }
   .about-visual p { color:var(--muted); font-size:.88rem; line-height:1.8; }
 
-  /* ── TEAM ── */
-  #team {
-    padding:5rem 2rem;
-  }
-  .team-grid {
-    display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;
-    max-width:900px; margin:0 auto;
-  }
-  .team-card {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:16px; padding:1.8rem; text-align:center;
-    width:200px; transition:all .3s;
-  }
-  .team-card:hover { transform:translateY(-4px); border-color:rgba(0,229,255,0.3); }
-  .team-avatar {
-    width:72px; height:72px; border-radius:50%;
-    margin:0 auto 1rem;
-    background:linear-gradient(135deg, var(--accent3), var(--accent));
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.8rem;
-  }
-  .team-name { font-weight:700; font-size:.95rem; margin-bottom:.3rem; }
-  .team-role { color:var(--muted); font-size:.8rem; }
+  /* TEAM */
+  #team { padding:5rem 2rem; }
 
-  /* ── FOOTER ── */
-  footer {
-    padding:2rem; text-align:center;
-    border-top:1px solid var(--border);
-    color:var(--muted); font-size:.85rem;
-  }
+  /* Supervisor card */
+  .supervisor-wrap { display:flex; justify-content:center; margin-bottom:2.5rem; }
+  .supervisor-card { background:var(--card); border:2px solid rgba(0,229,255,0.35); border-radius:20px; padding:2rem 3rem; text-align:center; min-width:220px; transition:all .3s; }
+  .supervisor-card:hover { transform:translateY(-4px); box-shadow:var(--glow); }
+  .supervisor-avatar { width:100px; height:100px; border-radius:50%; margin:0 auto 1rem; border:3px solid var(--accent); object-fit:cover; display:block; background:linear-gradient(135deg,var(--accent3),var(--accent)); }
+  .supervisor-avatar-placeholder { width:100px; height:100px; border-radius:50%; margin:0 auto 1rem; border:3px solid var(--accent); background:linear-gradient(135deg,var(--accent3),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+  .supervisor-name { font-weight:900; font-size:1.1rem; margin-bottom:.3rem; color:var(--accent); }
+  .supervisor-role { color:var(--muted); font-size:.85rem; }
+
+  /* Students */
+  .students-label { text-align:center; color:var(--muted); font-size:.85rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:1.2rem; }
+  .students-grid { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; max-width:900px; margin:0 auto; }
+  .student-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:1.2rem 1.5rem; text-align:center; min-width:160px; transition:all .3s; }
+  .student-card:hover { transform:translateY(-4px); border-color:rgba(0,229,255,0.3); }
+  .student-avatar { width:52px; height:52px; border-radius:50%; margin:0 auto .8rem; background:linear-gradient(135deg,var(--accent3),var(--accent)); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+  .student-name { font-weight:700; font-size:.9rem; }
+
+  /* FOOTER */
+  footer { padding:2rem; text-align:center; border-top:1px solid var(--border); color:var(--muted); font-size:.85rem; }
   footer a { color:var(--accent); text-decoration:none; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(20px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity:0; }
-    to   { opacity:1; }
-  }
-
-  .scroll-reveal {
-    opacity:0; transform:translateY(30px);
-    transition: opacity .7s ease, transform .7s ease;
-  }
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+  .scroll-reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease,transform .7s ease; }
   .scroll-reveal.visible { opacity:1; transform:none; }
 
-  /* ── TERMINAL TICKER ── */
-  .ticker {
-    background:rgba(0,229,255,0.05);
-    border-top:1px solid var(--border);
-    border-bottom:1px solid var(--border);
-    padding:.6rem 0; overflow:hidden;
-    font-family:'Space Mono'; font-size:.75rem; color:var(--accent);
-    white-space:nowrap;
-  }
-  .ticker-inner {
-    display:inline-block;
-    animation: ticker 25s linear infinite;
-  }
-  @keyframes ticker {
-    from { transform:translateX(0); }
-    to   { transform:translateX(-50%); }
-  }
+  /* ═══════════════════════════════ MODAL ═══ */
+  .overlay { display:none; position:fixed; inset:0; z-index:200; background:rgba(3,11,20,0.95); backdrop-filter:blur(10px); overflow-y:auto; padding:2rem; }
+  .overlay.open { display:block; animation:fadeIn .3s ease; }
+  .modal { max-width:860px; margin:0 auto; background:var(--surface); border:1px solid var(--border); border-radius:20px; overflow:hidden; }
+  .modal-header { padding:1.5rem 2rem; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--border); background:rgba(0,229,255,0.03); }
+  .modal-title { font-size:1.4rem; font-weight:800; }
+  .modal-sub { color:var(--muted); font-size:.85rem; margin-top:.3rem; }
+  .close-btn { background:rgba(255,255,255,0.05); border:none; color:var(--text); width:36px; height:36px; border-radius:8px; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; transition:background .3s; flex-shrink:0; }
+  .close-btn:hover { background:rgba(255,59,107,0.2); color:var(--accent2); }
+  .modal-body { padding:2rem; }
+
+  /* VIDEO */
+  .video-wrap { position:relative; padding-top:56.25%; border-radius:12px; overflow:hidden; margin-bottom:1.5rem; border:1px solid var(--border); background:#000; }
+  .video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:none; }
+
+  /* LESSON CONTENT */
+  .lesson-content h3 { font-size:1.1rem; font-weight:700; color:var(--accent); margin:1.5rem 0 .7rem; display:flex; align-items:center; gap:.5rem; }
+  .lesson-content p { color:var(--muted); line-height:1.9; font-size:.95rem; }
+  .lesson-content ul { padding-right:1.2rem; }
+  .lesson-content li { color:var(--muted); margin-bottom:.4rem; line-height:1.8; font-size:.95rem; }
+  .tip-box { background:rgba(0,229,255,0.06); border:1px solid rgba(0,229,255,0.2); border-right:3px solid var(--accent); border-radius:8px; padding:1rem 1.2rem; margin:1.2rem 0; font-size:.9rem; line-height:1.7; }
+  .tip-box.red { background:rgba(255,59,107,0.06); border-color:rgba(255,59,107,0.2); border-right-color:var(--accent2); }
+
+  /* ═══════════════════════════════ QUIZ ═══ */
+  .quiz-section { background:rgba(0,229,255,0.04); border:1px solid rgba(0,229,255,0.2); border-radius:14px; padding:1.5rem; margin:1.5rem 0; }
+  .quiz-title { font-size:1.05rem; font-weight:800; color:var(--accent); margin-bottom:1.2rem; display:flex; align-items:center; gap:.5rem; }
+  .quiz-q { margin-bottom:1.1rem; }
+  .quiz-q p { font-size:.95rem; font-weight:600; margin-bottom:.6rem; color:var(--text); }
+  .tf-btns { display:flex; gap:.7rem; }
+  .tf-btn { flex:1; padding:.55rem; border-radius:8px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--text); font-family:'Cairo',sans-serif; font-weight:700; font-size:.88rem; cursor:pointer; transition:all .25s; }
+  .tf-btn:hover { border-color:var(--accent); color:var(--accent); }
+  .tf-btn.correct  { background:rgba(0,229,255,0.15) !important; border-color:var(--accent) !important; color:var(--accent) !important; }
+  .tf-btn.wrong    { background:rgba(255,59,107,0.15) !important; border-color:var(--accent2) !important; color:var(--accent2) !important; }
+  .tf-btn.disabled { pointer-events:none; opacity:.5; }
+  .tf-btn.selected-correct { background:rgba(0,229,255,0.2); border-color:var(--accent); color:var(--accent); }
+  .tf-btn.selected-wrong   { background:rgba(255,59,107,0.2); border-color:var(--accent2); color:var(--accent2); }
+  .q-feedback { font-size:.82rem; margin-top:.4rem; height:1rem; }
+  .q-feedback.ok  { color:var(--accent); }
+  .q-feedback.err { color:var(--accent2); }
+  .quiz-submit { width:100%; margin-top:1rem; padding:.75rem; background:var(--accent); color:#000; border:none; border-radius:8px; font-family:'Cairo',sans-serif; font-weight:800; font-size:.95rem; cursor:pointer; transition:all .3s; }
+  .quiz-submit:hover { opacity:.88; }
+  .quiz-result { margin-top:1rem; padding:1rem; border-radius:10px; text-align:center; font-weight:700; font-size:1rem; display:none; }
+  .quiz-result.show { display:block; }
+  .quiz-result.pass { background:rgba(0,229,255,0.1); border:1px solid rgba(0,229,255,0.3); color:var(--accent); }
+  .quiz-result.fail { background:rgba(255,59,107,0.1); border:1px solid rgba(255,59,107,0.3); color:var(--accent2); }
 </style>
 </head>
 <body>
@@ -440,7 +216,7 @@
 <!-- TICKER -->
 <div style="position:fixed;top:62px;left:0;right:0;z-index:99;" class="ticker">
   <span class="ticker-inner">
-    🔐 مرحباً بك في منصة أمان للأمن السيبراني &nbsp;&nbsp;|&nbsp;&nbsp; 🛡️ تعلم كيف تحمي نفسك على الإنترنت &nbsp;&nbsp;|&nbsp;&nbsp; 💻 5 دروس متخصصة في الأمن الرقمي &nbsp;&nbsp;|&nbsp;&nbsp; 🎓 مقدمة من طلاب تكنولوجيا التعليم &nbsp;&nbsp;|&nbsp;&nbsp; 🔐 مرحباً بك في منصة أمان للأمن السيبراني &nbsp;&nbsp;|&nbsp;&nbsp; 🛡️ تعلم كيف تحمي نفسك على الإنترنت &nbsp;&nbsp;|&nbsp;&nbsp; 💻 5 دروس متخصصة في الأمن الرقمي &nbsp;&nbsp;|&nbsp;&nbsp; 🎓 مقدمة من طلاب تكنولوجيا التعليم &nbsp;&nbsp;|&nbsp;&nbsp;
+    🔐 مرحباً بك في منصة أمان للأمن السيبراني &nbsp;|&nbsp; 🛡️ تعلم كيف تحمي نفسك على الإنترنت &nbsp;|&nbsp; 💻 5 دروس متخصصة في الأمن الرقمي &nbsp;|&nbsp; 🎓 مقدمة من طلاب تكنولوجيا التعليم &nbsp;|&nbsp; 🔐 مرحباً بك في منصة أمان للأمن السيبراني &nbsp;|&nbsp; 🛡️ تعلم كيف تحمي نفسك على الإنترنت &nbsp;|&nbsp; 💻 5 دروس متخصصة في الأمن الرقمي &nbsp;|&nbsp; 🎓 مقدمة من طلاب تكنولوجيا التعليم &nbsp;|&nbsp;
   </span>
 </div>
 
@@ -450,13 +226,8 @@
   <div class="hero-orb orb2"></div>
   <div class="hero-orb orb3"></div>
   <div class="badge">🛡️ منصة تعليمية متخصصة</div>
-  <h1 class="hero-title">
-    تعلم <span class="hl">الأمن السيبراني</span><br>
-    من <span class="hl2">الصفر</span> للاحتراف
-  </h1>
-  <p class="hero-sub">
-    منصة عربية متخصصة في تعليم الأمن الرقمي وحماية المعلومات — ابدأ رحلتك مع 5 دروس مميزة مصممة خصيصاً للمبتدئين
-  </p>
+  <h1 class="hero-title">تعلم <span class="hl">الأمن السيبراني</span><br>من <span class="hl2">الصفر</span> للاحتراف</h1>
+  <p class="hero-sub">منصة عربية متخصصة في تعليم الأمن الرقمي وحماية المعلومات — ابدأ رحلتك مع 5 دروس مميزة مصممة خصيصاً للمبتدئين</p>
   <div class="hero-cta">
     <a href="#courses" class="btn btn-primary">🚀 ابدأ التعلم الآن</a>
     <a href="#about" class="btn btn-outline">تعرف علينا</a>
@@ -476,82 +247,65 @@
     <div class="line"></div>
   </div>
   <div class="courses-grid">
-
     <div class="course-card scroll-reveal" onclick="openLesson(0)">
-      <img class="card-thumb" src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=80" alt="مقدمة الأمن السيبراني" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=600&q=80" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#071624,#0a1f35)">🛡️</div>
       <div class="card-body">
         <span class="card-tag">درس 1</span>
         <h3 class="card-title">مقدمة في الأمن السيبراني</h3>
         <p class="card-desc">ما هو الأمن السيبراني؟ لماذا هو مهم؟ تعرف على أنواع التهديدات الرقمية الشائعة وكيف تبدأ في حماية نفسك.</p>
-        <div class="card-meta">
-          <span>⏱️ 15 دقيقة</span>
-          <span>📊 مبتدئ</span>
-        </div>
+        <div class="card-meta"><span>⏱️ 15 دقيقة</span><span>📊 مبتدئ</span></div>
         <button class="card-btn">📖 ابدأ الدرس</button>
       </div>
     </div>
 
     <div class="course-card scroll-reveal" onclick="openLesson(1)">
-      <img class="card-thumb" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80" alt="كلمات المرور" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#071624,#1a0a35)">🔑</div>
       <div class="card-body">
         <span class="card-tag purple">درس 2</span>
-        <h3 class="card-title">كلمات المرور القوية والمصادقة الثنائية</h3>
+        <h3 class="card-title">كلمات المرور والمصادقة الثنائية</h3>
         <p class="card-desc">كيف تصنع كلمة مرور لا تُكسر؟ وما هو دور المصادقة الثنائية 2FA في حماية حساباتك؟</p>
-        <div class="card-meta">
-          <span>⏱️ 20 دقيقة</span>
-          <span>📊 مبتدئ</span>
-        </div>
+        <div class="card-meta"><span>⏱️ 20 دقيقة</span><span>📊 مبتدئ</span></div>
         <button class="card-btn">📖 ابدأ الدرس</button>
       </div>
     </div>
 
     <div class="course-card scroll-reveal" onclick="openLesson(2)">
-      <img class="card-thumb" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="التصيد الاحتيالي" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#071624,#35170a)">🎣</div>
       <div class="card-body">
         <span class="card-tag red">درس 3</span>
         <h3 class="card-title">التصيد الاحتيالي (Phishing)</h3>
         <p class="card-desc">تعرف على أخطر أساليب الاختراق الإلكتروني — كيف يعمل التصيد وكيف تكتشفه قبل أن تقع في الفخ؟</p>
-        <div class="card-meta">
-          <span>⏱️ 18 دقيقة</span>
-          <span>📊 مبتدئ</span>
-        </div>
+        <div class="card-meta"><span>⏱️ 18 دقيقة</span><span>📊 مبتدئ</span></div>
         <button class="card-btn">📖 ابدأ الدرس</button>
       </div>
     </div>
 
     <div class="course-card scroll-reveal" onclick="openLesson(3)">
-      <img class="card-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80" alt="الشبكات الآمنة" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#071624,#0a3535)">🌐</div>
       <div class="card-body">
         <span class="card-tag">درس 4</span>
         <h3 class="card-title">أمان الشبكات والـ VPN</h3>
         <p class="card-desc">لماذا الـ Wi-Fi العام خطر؟ ما هو الـ VPN وكيف يحميك؟ تعلم كيف تتصفح الإنترنت بأمان.</p>
-        <div class="card-meta">
-          <span>⏱️ 22 دقيقة</span>
-          <span>📊 متوسط</span>
-        </div>
+        <div class="card-meta"><span>⏱️ 22 دقيقة</span><span>📊 متوسط</span></div>
         <button class="card-btn">📖 ابدأ الدرس</button>
       </div>
     </div>
 
     <div class="course-card scroll-reveal" onclick="openLesson(4)">
-      <img class="card-thumb" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80" alt="البرامج الخبيثة" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img class="card-thumb" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="card-thumb-placeholder" style="display:none;background:linear-gradient(135deg,#071624,#2a0a35)">🦠</div>
       <div class="card-body">
         <span class="card-tag purple">درس 5</span>
         <h3 class="card-title">البرامج الخبيثة والحماية منها</h3>
         <p class="card-desc">فيروسات، تروجان، رانسوموير — تعرف على أنواع البرامج الضارة وكيف تحمي جهازك وبياناتك منها.</p>
-        <div class="card-meta">
-          <span>⏱️ 25 دقيقة</span>
-          <span>📊 متوسط</span>
-        </div>
+        <div class="card-meta"><span>⏱️ 25 دقيقة</span><span>📊 متوسط</span></div>
         <button class="card-btn">📖 ابدأ الدرس</button>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -564,7 +318,7 @@
       <ul class="feature-list">
         <li><span class="feat-icon">✅</span> محتوى عربي 100% موثوق ومبسط</li>
         <li><span class="feat-icon">🎥</span> فيديوهات تعليمية مختارة بعناية</li>
-        <li><span class="feat-icon">📱</span> يعمل على جميع الأجهزة</li>
+        <li><span class="feat-icon">📝</span> اختبارات تفاعلية قبل وبعد كل درس</li>
         <li><span class="feat-icon">🆓</span> مجاني تماماً بلا أي رسوم</li>
         <li><span class="feat-icon">🔄</span> محتوى محدّث باستمرار</li>
       </ul>
@@ -584,31 +338,33 @@
     <p>تحت إشراف أكاديمي متميز</p>
     <div class="line"></div>
   </div>
-  <div class="team-grid">
-    <div class="team-card scroll-reveal">
-      <div class="team-avatar">👩‍🏫</div>
-      <div class="team-name">أ.د/ منار حامد</div>
-      <div class="team-role">أستاذة ورئيسة القسم</div>
+
+  <!-- Supervisor -->
+  <div class="supervisor-wrap scroll-reveal">
+    <div class="supervisor-card">
+      <img src="NAGLAA.jpg" alt="أ.د/ نجلاء سعيد"
+           class="supervisor-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="supervisor-avatar-placeholder" style="display:none">👩‍🏫</div>
+      <div class="supervisor-name">أ.د/ نجلاء سعيد</div>
+      <div class="supervisor-role">أستاذة ورئيسة القسم — إشراف علمي</div>
     </div>
-    <div class="team-card scroll-reveal">
-      <div class="team-avatar">👨‍💼</div>
-      <div class="team-name">د/ خالد الرفاعي</div>
-      <div class="team-role">مدرس تكنولوجيا التعليم</div>
+  </div>
+
+  <!-- Students -->
+  <p class="students-label scroll-reveal">⚙️ إعداد وتنفيذ الطلاب</p>
+  <div class="students-grid">
+    <div class="student-card scroll-reveal">
+      <div class="student-avatar">🧑‍💻</div>
+      <div class="student-name">سارة إبراهيم محمد صابر</div>
     </div>
-    <div class="team-card scroll-reveal">
-      <div class="team-avatar">👨‍🎓</div>
-      <div class="team-name">د/ علاء داوود</div>
-      <div class="team-role">مدرس تكنولوجيا التعليم</div>
+    <div class="student-card scroll-reveal">
+      <div class="student-avatar">🧑‍💻</div>
+      <div class="student-name">بسملة عماد الدين</div>
     </div>
-    <div class="team-card scroll-reveal">
-      <div class="team-avatar">🧑‍💻</div>
-      <div class="team-name">محمد خالد</div>
-      <div class="team-role">إعداد وتطوير</div>
-    </div>
-    <div class="team-card scroll-reveal">
-      <div class="team-avatar">🧑‍💻</div>
-      <div class="team-name">سلمى السيد</div>
-      <div class="team-role">إعداد وتطوير</div>
+    <div class="student-card scroll-reveal">
+      <div class="student-avatar">🧑‍💻</div>
+      <div class="student-name">روان حماد عبد السلام</div>
     </div>
   </div>
 </section>
@@ -619,7 +375,7 @@
   <p style="margin-top:.4rem">كلية التربية النوعية — جامعة الزقازيق</p>
 </footer>
 
-<!-- ═══════════════════════════════════════════ MODALS ═══ -->
+<!-- ═══════════════════ MODAL ═══════════════════ -->
 <div class="overlay" id="overlay" onclick="handleOverlayClick(event)">
   <div class="modal" id="modal">
     <div class="modal-header">
@@ -629,36 +385,46 @@
       </div>
       <button class="close-btn" onclick="closeLesson()">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="video-wrap">
-        <iframe id="lesson-video" src="" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <div class="lesson-content" id="lesson-content"></div>
-    </div>
+    <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
 <script>
+/* ══════════════════════════════════════════════════════
+   DATA — lessons with pre-quiz, content, video, post-quiz
+   ══════════════════════════════════════════════════════ */
 const lessons = [
+
+  /* ── LESSON 1 ── */
   {
     title: "الدرس الأول: مقدمة في الأمن السيبراني",
     sub: "ما هو الأمن السيبراني؟ التهديدات الرقمية الأساسية",
-    video: "https://www.youtube.com/embed/inWWhr5tnEA",
+    video: "https://www.youtube.com/watch?v=WXgfVRNDZlA",
+    ytSearch: "https://www.youtube.com/results?search_query=%D9%85%D9%82%D8%AF%D9%85%D8%A9+%D8%A7%D9%84%D8%A3%D9%85%D9%86+%D8%A7%D9%84%D8%B3%D9%8A%D8%A8%D8%B1%D8%A7%D9%86%D9%8A+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
+    preQuiz: [
+      { q:"الأمن السيبراني يهتم فقط بحماية الأجهزة المادية.",         ans:false },
+      { q:"يحدث هجوم إلكتروني كل 39 ثانية في العالم.",                ans:true  },
+      { q:"البرامج الضارة لا تستطيع التأثير على البيانات الشخصية.",   ans:false },
+      { q:"التصيد الاحتيالي نوع من أنواع التهديدات الرقمية.",         ans:true  },
+      { q:"التعليم والتوعية يُعدّان أفضل وسيلة لمواجهة الاختراقات.", ans:true  }
+    ],
+    postQuiz: [
+      { q:"الأمن السيبراني يشمل حماية الأجهزة والبرامج والبيانات معاً.", ans:true  },
+      { q:"هجمات القرصنة تعني الدخول المصرح به للأنظمة.",               ans:false },
+      { q:"95% من اختراقات الأمن السيبراني سببها خطأ بشري.",            ans:true  },
+      { q:"اختراق الشبكات يهدف إلى التجسس على الاتصالات.",              ans:true  },
+      { q:"الفيروسات لا تضر بالملفات الموجودة على الجهاز.",             ans:false }
+    ],
     content: `
       <h3>🎯 ما الذي ستتعلمه؟</h3>
       <p>في هذا الدرس التأسيسي ستتعرف على مفهوم الأمن السيبراني بشكل شامل، وأهميته في حياتنا الرقمية اليومية، وأبرز التهديدات التي تواجهنا على الإنترنت.</p>
-      
       <h3>🔍 ما هو الأمن السيبراني؟</h3>
       <ul>
         <li>هو مجموعة الممارسات والتقنيات لحماية الأنظمة والشبكات والبيانات من الهجمات الرقمية</li>
         <li>يشمل حماية الأجهزة (Hardware) والبرامج (Software) والبيانات</li>
         <li>يهدف إلى ضمان السرية والسلامة والتوافر للمعلومات</li>
       </ul>
-      
-      <div class="tip-box">
-        💡 <strong>هل تعلم؟</strong> يحدث هجوم إلكتروني كل 39 ثانية في العالم! لهذا أصبح الأمن السيبراني من أهم مجالات القرن الحادي والعشرين.
-      </div>
-      
+      <div class="tip-box">💡 <strong>هل تعلم؟</strong> يحدث هجوم إلكتروني كل 39 ثانية في العالم!</div>
       <h3>⚠️ أنواع التهديدات الرقمية الشائعة</h3>
       <ul>
         <li><strong>الفيروسات والبرامج الضارة:</strong> برامج تتسلل لجهازك وتدمر الملفات</li>
@@ -666,53 +432,73 @@ const lessons = [
         <li><strong>هجمات القرصنة:</strong> محاولات الدخول غير المصرح به</li>
         <li><strong>اختراق الشبكات:</strong> التجسس على اتصالاتك</li>
       </ul>
-      
-      <div class="tip-box red">
-        🚨 <strong>تنبيه مهم:</strong> 95% من اختراقات الأمن السيبراني ناتجة عن خطأ بشري — وهذا يعني أن التعليم هو أفضل سلاح لديك!
-      </div>
-    `
+      <div class="tip-box red">🚨 <strong>تنبيه مهم:</strong> 95% من اختراقات الأمن السيبراني ناتجة عن خطأ بشري — التعليم هو أفضل سلاح لديك!</div>`
   },
+
+  /* ── LESSON 2 ── */
   {
     title: "الدرس الثاني: كلمات المرور والمصادقة الثنائية",
     sub: "كيف تصنع كلمة مرور لا تُكسر وتفعّل حماية إضافية",
-    video: "https://www.youtube.com/embed/aEmXuDdv9YU",
+    video: "https://www.youtube.com/watch?v=D4Z_5TB_xiw",
+    ytSearch: "https://www.youtube.com/results?search_query=%D9%83%D9%84%D9%85%D8%A9+%D9%85%D8%B1%D9%88%D8%B1+%D9%82%D9%88%D9%8A%D8%A9+%D9%85%D8%B5%D8%A7%D8%AF%D9%82%D8%A9+%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
+    preQuiz: [
+      { q:"يكفي أن تكون كلمة المرور مكونة من 4 أرقام فقط.",                    ans:false },
+      { q:"يُنصح باستخدام نفس كلمة المرور في جميع المواقع لسهولة التذكر.",      ans:false },
+      { q:"المصادقة الثنائية (2FA) تُضيف طبقة أمان إضافية لحساباتك.",          ans:true  },
+      { q:"كلمة المرور القوية يجب ألا تقل عن 12 حرفاً.",                        ans:true  },
+      { q:"تطبيق Google Authenticator أداة للمصادقة الثنائية.",                 ans:true  }
+    ],
+    postQuiz: [
+      { q:"كلمة المرور المبنية على اسمك أو تاريخ ميلادك تُعتبر قوية.",          ans:false },
+      { q:"المصادقة الثنائية تحميك حتى لو سُرقت كلمة مرورك.",                  ans:true  },
+      { q:"الجمع بين أحرف كبيرة وصغيرة وأرقام ورموز يُقوّي كلمة المرور.",      ans:true  },
+      { q:"يمكن اختراق كلمة المرور الضعيفة في ثوانٍ باستخدام برامج تخمين.",    ans:true  },
+      { q:"تطبيق Authy يُستخدم لتوليد رموز المصادقة الثنائية.",                 ans:true  }
+    ],
     content: `
       <h3>🔑 لماذا كلمة المرور مهمة؟</h3>
-      <p>كلمة المرور هي الباب الأول لحماية حساباتك. كلمة مرور ضعيفة تعني أن حسابك عرضة للاختراق في ثوانٍ باستخدام برامج تخمين آلي.</p>
-      
+      <p>كلمة المرور هي الباب الأول لحماية حساباتك. كلمة مرور ضعيفة تعني أن حسابك عرضة للاختراق في ثوانٍ.</p>
       <h3>✅ مواصفات كلمة المرور القوية</h3>
       <ul>
         <li>لا تقل عن <strong>12 حرفاً</strong></li>
         <li>تجمع بين: أحرف كبيرة + صغيرة + أرقام + رموز</li>
         <li>لا تكون كلمة موجودة في القاموس</li>
-        <li>لا تتضمن معلومات شخصية (اسمك، تاريخ ميلادك)</li>
+        <li>لا تتضمن معلومات شخصية</li>
         <li>مختلفة لكل موقع وتطبيق</li>
       </ul>
-      
-      <div class="tip-box">
-        💡 <strong>نصيحة ذكية:</strong> استخدم جملة طويلة وحولها لكلمة مرور! مثلاً: "أحب القهوة في الصباح!" = "Ahb@lQ4hw@f1S9b@H!"
-      </div>
-      
-      <h3>📱 المصادقة الثنائية (2FA) — طبقة أمان إضافية</h3>
+      <div class="tip-box">💡 <strong>نصيحة ذكية:</strong> استخدم جملة طويلة وحولها لكلمة مرور!</div>
+      <h3>📱 المصادقة الثنائية (2FA)</h3>
       <ul>
         <li>حتى لو سُرقت كلمة مرورك، لن يستطيع أحد الدخول بدون رمز إضافي</li>
         <li>يُرسَل الرمز لهاتفك أو بريدك أو تطبيق مخصص</li>
         <li>أفضل التطبيقات: Google Authenticator، Authy</li>
       </ul>
-      
-      <div class="tip-box red">
-        🚨 <strong>لا تفعل هذا أبداً:</strong> لا تستخدم نفس كلمة المرور في أكثر من موقع — إذا اخترق أحدها، ستخترق جميعها!
-      </div>
-    `
+      <div class="tip-box red">🚨 <strong>لا تفعل هذا أبداً:</strong> لا تستخدم نفس كلمة المرور في أكثر من موقع!</div>`
   },
+
+  /* ── LESSON 3 ── */
   {
     title: "الدرس الثالث: التصيد الاحتيالي (Phishing)",
     sub: "كيف تكتشف رسائل التصيد وتحمي نفسك منها",
-    video: "https://www.youtube.com/embed/XBkzBrXlle0",
+    video: "https://www.youtube.com/watch?v=L7quoYNnD5Q",
+    ytSearch: "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%AA%D8%B5%D9%8A%D8%AF+%D8%A7%D9%84%D8%A7%D8%AD%D8%AA%D9%8A%D8%A7%D9%84%D9%8A+Phishing+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
+    preQuiz: [
+      { q:"التصيد الاحتيالي يعتمد على انتحال شخصية جهة موثوقة.",                ans:true  },
+      { q:"البنوك الحقيقية تطلب عادةً كلمة مرورك عبر البريد الإلكتروني.",       ans:false },
+      { q:"Smishing هو نوع من التصيد يعتمد على رسائل SMS.",                     ans:true  },
+      { q:"الأخطاء الإملائية في الرسائل قد تكون علامة تحذيرية للتصيد.",         ans:true  },
+      { q:"Spear Phishing هجوم عشوائي يستهدف الجميع بالتساوي.",                 ans:false }
+    ],
+    postQuiz: [
+      { q:"يمكن التحقق من صحة الرسالة بفحص عنوان البريد المرسل.",               ans:true  },
+      { q:"الضغط على الروابط المختصرة في الرسائل المجهولة آمن تماماً.",          ans:false },
+      { q:"Vishing هو التصيد عبر المكالمات الهاتفية.",                           ans:true  },
+      { q:"برامج مكافحة الفيروسات تساعد في اكتشاف رسائل التصيد.",               ans:true  },
+      { q:"التصيد الاحتيالي لا يستطيع استهداف معلومات مالية.",                   ans:false }
+    ],
     content: `
       <h3>🎣 ما هو التصيد الاحتيالي؟</h3>
-      <p>هو أسلوب احتيالي يقوم فيه المهاجم بانتحال شخصية جهة موثوقة (بنك، شركة، صديق) لخداعك وسرقة بياناتك الشخصية أو المالية.</p>
-      
+      <p>هو أسلوب احتيالي يقوم فيه المهاجم بانتحال شخصية جهة موثوقة لخداعك وسرقة بياناتك.</p>
       <h3>📧 أنواع هجمات التصيد</h3>
       <ul>
         <li><strong>Email Phishing:</strong> رسائل بريد إلكتروني مزيفة</li>
@@ -720,142 +506,228 @@ const lessons = [
         <li><strong>Vishing:</strong> مكالمات هاتفية مزيفة</li>
         <li><strong>Spear Phishing:</strong> هجمات موجهة لشخص بعينه</li>
       </ul>
-      
-      <div class="tip-box red">
-        🚨 <strong>علامات التصيد الاحتيالي:</strong>
-        <ul style="margin-top:.5rem">
-          <li>عنوان بريد غريب لا يطابق الشركة الرسمية</li>
-          <li>روابط تبدو مشبوهة أو مختصرة</li>
-          <li>طلب عاجل لبياناتك الشخصية أو كلمة المرور</li>
-          <li>أخطاء إملائية ونحوية واضحة</li>
-        </ul>
-      </div>
-      
+      <div class="tip-box red">🚨 <strong>علامات التصيد:</strong> عنوان بريد غريب، روابط مشبوهة، طلب عاجل لبياناتك، أخطاء إملائية.</div>
       <h3>🛡️ كيف تحمي نفسك؟</h3>
       <ul>
-        <li>تحقق دائماً من عنوان البريد المرسل بدقة</li>
-        <li>لا تضغط على روابط مجهولة — افتح الموقع مباشرة</li>
-        <li>لا يوجد بنك أو شركة حقيقية تطلب كلمة مرورك عبر البريد</li>
+        <li>تحقق دائماً من عنوان البريد المرسل</li>
+        <li>لا تضغط على روابط مجهولة</li>
+        <li>لا يوجد بنك حقيقي يطلب كلمة مرورك عبر البريد</li>
         <li>استخدم برامج مكافحة الفيروسات مع فلتر التصيد</li>
       </ul>
-      
-      <div class="tip-box">
-        💡 <strong>قاعدة ذهبية:</strong> "إذا بدا الأمر جيداً للغاية أو مخيفاً للغاية — فهو على الأرجح احتيال!"
-      </div>
-    `
+      <div class="tip-box">💡 <strong>قاعدة ذهبية:</strong> "إذا بدا الأمر مخيفاً للغاية أو جيداً للغاية — فهو على الأرجح احتيال!"</div>`
   },
+
+  /* ── LESSON 4 ── */
   {
     title: "الدرس الرابع: أمان الشبكات والـ VPN",
     sub: "التصفح الآمن، الـ Wi-Fi العام، وفهم الـ VPN",
-    video: "https://www.youtube.com/embed/R-JUOpCgTZc",
+    video: "https://www.youtube.com/watch?v=C4IHTdHYHuI",
+    ytSearch: "https://www.youtube.com/results?search_query=%D8%A3%D9%85%D8%A7%D9%86+%D8%A7%D9%84%D8%B4%D8%A8%D9%83%D8%A7%D8%AA+VPN+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
+    preQuiz: [
+      { q:"الاتصال بشبكة Wi-Fi عامة يمكن أن يعرض بياناتك للسرقة.",              ans:true  },
+      { q:"الـ VPN يُخفي عنوان IP الخاص بك.",                                   ans:true  },
+      { q:"هجوم Man in the Middle يحدث فقط على الشبكات الخاصة.",                ans:false },
+      { q:"المواقع التي تبدأ بـ HTTPS أكثر أماناً من HTTP.",                     ans:true  },
+      { q:"الـ VPN يُبطئ الاتصال بالإنترنت دائماً إلى الصفر.",                  ans:false }
+    ],
+    postQuiz: [
+      { q:"يُنصح بتعطيل الاتصال التلقائي بالـ Wi-Fi على هاتفك.",                ans:true  },
+      { q:"الـ VPN ينشئ نفقاً مشفراً بين جهازك والإنترنت.",                     ans:true  },
+      { q:"شبكات Wi-Fi وهمية تحمل أسماء أماكن مألوفة تُعتبر آمنة.",             ans:false },
+      { q:"تغيير كلمة مرور الراوتر الافتراضية يرفع مستوى الأمان.",               ans:true  },
+      { q:"المعاملات المالية عبر Wi-Fi عام بدون VPN تُعتبر آمنة.",              ans:false }
+    ],
     content: `
       <h3>🌐 لماذا الشبكات العامة خطيرة؟</h3>
-      <p>عندما تتصل بـ Wi-Fi عام (مقهى، مطار، فندق)، قد يكون المهاجم على نفس الشبكة ويستطيع رؤية بياناتك — وهذا ما يسمى بهجوم "Man in the Middle".</p>
-      
+      <p>عندما تتصل بـ Wi-Fi عام، قد يكون المهاجم على نفس الشبكة ويستطيع رؤية بياناتك — هجوم "Man in the Middle".</p>
       <h3>⚠️ مخاطر الـ Wi-Fi العام</h3>
       <ul>
         <li>سرقة كلمات المرور والبيانات الشخصية</li>
         <li>التجسس على نشاطك على الإنترنت</li>
-        <li>شبكات وهمية تحمل اسم مكان مألوف لخداعك</li>
+        <li>شبكات وهمية تحمل اسم مكان مألوف</li>
         <li>زرع برامج ضارة على جهازك</li>
       </ul>
-      
       <h3>🔒 ما هو الـ VPN؟</h3>
-      <p>الـ VPN (شبكة افتراضية خاصة) يقوم بتشفير اتصالك بالإنترنت وإخفاء عنوان IP الخاص بك، مما يجعل من الصعب على أي شخص مراقبة نشاطك.</p>
-      
-      <div class="tip-box">
-        💡 <strong>كيف يعمل الـ VPN؟</strong> يُنشئ نفقاً مشفراً بين جهازك والإنترنت — مثل الحديث في غرفة مغلقة بدلاً من الشارع العام!
-      </div>
-      
+      <p>يقوم بتشفير اتصالك بالإنترنت وإخفاء عنوان IP الخاص بك.</p>
+      <div class="tip-box">💡 الـ VPN مثل الحديث في غرفة مغلقة بدلاً من الشارع العام!</div>
       <h3>✅ نصائح أمان الشبكات</h3>
       <ul>
         <li>استخدم VPN موثوق عند الاتصال بأي شبكة عامة</li>
-        <li>تأكد من أن المواقع التي تزورها تبدأ بـ HTTPS</li>
-        <li>أوقف تشغيل الـ Wi-Fi التلقائي على هاتفك</li>
-        <li>غيّر كلمة مرور الراوتر الافتراضية في المنزل</li>
+        <li>تأكد من أن المواقع تبدأ بـ HTTPS</li>
+        <li>أوقف الـ Wi-Fi التلقائي على هاتفك</li>
+        <li>غيّر كلمة مرور الراوتر الافتراضية</li>
       </ul>
-      
-      <div class="tip-box red">
-        🚨 <strong>تحذير:</strong> تجنب إجراء أي معاملات مالية أو إدخال بيانات حساسة أثناء اتصالك بـ Wi-Fi عام بدون VPN!
-      </div>
-    `
+      <div class="tip-box red">🚨 تجنب المعاملات المالية عبر Wi-Fi عام بدون VPN!</div>`
   },
+
+  /* ── LESSON 5 ── */
   {
     title: "الدرس الخامس: البرامج الخبيثة والحماية منها",
     sub: "أنواع البرامج الضارة وكيف تحمي جهازك وبياناتك",
-    video: "https://www.youtube.com/embed/n8mbzU0X2nQ",
+    video: "https://www.youtube.com/watch?v=oBxe-tkN4NA",
+    ytSearch: "https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D9%85%D8%AC+%D8%A7%D9%84%D8%AE%D8%A8%D9%8A%D8%AB%D8%A9+%D9%88%D8%A7%D9%84%D8%AD%D9%85%D8%A7%D9%8A%D8%A9+%D9%85%D9%86%D9%87%D8%A7+%D8%B4%D8%B1%D8%AD+%D8%B9%D8%B1%D8%A8%D9%8A",
+    preQuiz: [
+      { q:"الفيروس (Virus) ينتشر عند تشغيل الملفات المصابة.",                    ans:true  },
+      { q:"Ransomware يطلب فدية مقابل استعادة الملفات المشفرة.",                 ans:true  },
+      { q:"Spyware يُستخدم فقط لتحسين أداء الجهاز.",                            ans:false },
+      { q:"حصان طروادة (Trojan) يتنكر كبرنامج مفيد.",                           ans:true  },
+      { q:"تحديث برامج مكافحة الفيروسات لا يؤثر على مستوى الحماية.",            ans:false }
+    ],
+    postQuiz: [
+      { q:"قاعدة 3-2-1 تعني 3 نسخ احتياطية على وسيلتين مختلفتين وواحدة خارجية.", ans:true  },
+      { q:"Adware يُبطئ الجهاز ويعرض إعلانات مزعجة.",                           ans:true  },
+      { q:"تحميل البرامج من مصادر مجهولة آمن طالما الجهاز محدّث.",              ans:false },
+      { q:"الدودة (Worm) تنتشر تلقائياً عبر الشبكات بدون تدخل المستخدم.",       ans:true  },
+      { q:"خسائر هجمات الفدية العالمية في 2023 تجاوزت 30 مليار دولار.",          ans:true  }
+    ],
     content: `
       <h3>🦠 ما هي البرامج الخبيثة؟</h3>
-      <p>هي برامج مصممة للتسلل لجهازك وإلحاق الضرر به أو سرقة بياناتك دون علمك أو موافقتك.</p>
-      
+      <p>هي برامج مصممة للتسلل لجهازك وإلحاق الضرر أو سرقة بياناتك دون علمك.</p>
       <h3>🔍 أنواع البرامج الخبيثة</h3>
       <ul>
-        <li><strong>Virus (فيروس):</strong> يلصق نفسه بالملفات وينتشر عند تشغيلها</li>
-        <li><strong>Trojan (حصان طروادة):</strong> يتنكر كبرنامج مفيد ويفتح أبواباً خلفية</li>
-        <li><strong>Ransomware:</strong> يشفر ملفاتك ويطلب فدية لاستعادتها</li>
-        <li><strong>Spyware:</strong> يتجسس على نشاطك وسرقة بياناتك</li>
-        <li><strong>Adware:</strong> يعرض إعلانات مزعجة ويبطئ الجهاز</li>
-        <li><strong>Worm (دودة):</strong> ينتشر تلقائياً عبر الشبكات</li>
+        <li><strong>Virus:</strong> يلصق نفسه بالملفات وينتشر عند تشغيلها</li>
+        <li><strong>Trojan:</strong> يتنكر كبرنامج مفيد ويفتح أبواباً خلفية</li>
+        <li><strong>Ransomware:</strong> يشفر ملفاتك ويطلب فدية</li>
+        <li><strong>Spyware:</strong> يتجسس على نشاطك</li>
+        <li><strong>Adware:</strong> يعرض إعلانات مزعجة</li>
+        <li><strong>Worm:</strong> ينتشر تلقائياً عبر الشبكات</li>
       </ul>
-      
-      <div class="tip-box red">
-        🚨 <strong>Ransomware — التهديد الأكبر:</strong> في 2023، بلغت خسائر هجمات الفدية العالمية أكثر من 30 مليار دولار! الوقاية أسهل بكثير من العلاج.
-      </div>
-      
+      <div class="tip-box red">🚨 خسائر هجمات الفدية عام 2023 تجاوزت 30 مليار دولار!</div>
       <h3>🛡️ كيف تحمي نفسك؟</h3>
       <ul>
-        <li>ثبّت برنامج مكافحة فيروسات موثوق وحدّثه باستمرار</li>
-        <li>لا تحمّل برامج من مصادر مجهولة أو غير موثوقة</li>
-        <li>احتفظ بنسخ احتياطية لملفاتك المهمة (Backup)</li>
-        <li>حدّث نظام التشغيل والبرامج بانتظام</li>
-        <li>كن حذراً عند فتح مرفقات البريد الإلكتروني</li>
+        <li>ثبّت برنامج مكافحة فيروسات موثوق وحدّثه</li>
+        <li>لا تحمّل برامج من مصادر مجهولة</li>
+        <li>احتفظ بنسخ احتياطية (Backup)</li>
+        <li>حدّث نظام التشغيل بانتظام</li>
+        <li>كن حذراً مع مرفقات البريد</li>
       </ul>
-      
-      <div class="tip-box">
-        💡 <strong>قاعدة النسخ الاحتياطي 3-2-1:</strong> احتفظ بـ 3 نسخ من بياناتك، على 2 وسيلة تخزين مختلفة، وواحدة منها خارج الموقع (Cloud).
-      </div>
-    `
+      <div class="tip-box">💡 <strong>قاعدة 3-2-1:</strong> 3 نسخ، على 2 وسيلة تخزين، وواحدة في السحابة.</div>`
   }
 ];
 
+/* ══════════════════════════════════════════════════════
+   QUIZ BUILDER
+   ══════════════════════════════════════════════════════ */
+function buildQuiz(questions, quizId, title) {
+  let html = `<div class="quiz-section" id="${quizId}">
+    <div class="quiz-title">${title}</div>`;
+  questions.forEach((item, qi) => {
+    html += `<div class="quiz-q" id="${quizId}-q${qi}">
+      <p>${qi+1}. ${item.q}</p>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="answerQ('${quizId}',${qi},true,${item.ans})">✔ صح</button>
+        <button class="tf-btn" onclick="answerQ('${quizId}',${qi},false,${item.ans})">✘ خطأ</button>
+      </div>
+      <div class="q-feedback" id="${quizId}-fb${qi}"></div>
+    </div>`;
+  });
+  html += `<button class="quiz-submit" onclick="submitQuiz('${quizId}',${questions.length})">✅ إرسال الإجابات</button>
+    <div class="quiz-result" id="${quizId}-result"></div>
+  </div>`;
+  return html;
+}
+
+const quizState = {};
+
+function answerQ(quizId, qi, userAns, correct) {
+  if (!quizState[quizId]) quizState[quizId] = {};
+  if (quizState[quizId][qi] !== undefined) return; // already answered
+  quizState[quizId][qi] = userAns === correct;
+  const qDiv = document.getElementById(`${quizId}-q${qi}`);
+  const btns = qDiv.querySelectorAll('.tf-btn');
+  const fb   = document.getElementById(`${quizId}-fb${qi}`);
+  btns.forEach(b => b.classList.add('disabled'));
+  if (userAns === correct) {
+    btns[userAns ? 0 : 1].classList.add('selected-correct');
+    fb.textContent = '✔ إجابة صحيحة!';
+    fb.className = 'q-feedback ok';
+  } else {
+    btns[userAns ? 0 : 1].classList.add('selected-wrong');
+    const rightLabel = correct ? 'صح' : 'خطأ';
+    fb.textContent = `✘ إجابة خاطئة — الإجابة الصحيحة: ${rightLabel}`;
+    fb.className = 'q-feedback err';
+  }
+}
+
+function submitQuiz(quizId, total) {
+  const state = quizState[quizId] || {};
+  let score = 0;
+  for (let i = 0; i < total; i++) if (state[i]) score++;
+  const resultEl = document.getElementById(`${quizId}-result`);
+  resultEl.classList.add('show');
+  if (score >= 3) {
+    resultEl.className = 'quiz-result show pass';
+    resultEl.innerHTML = `🎉 ممتاز! حصلت على ${score} من ${total}`;
+  } else {
+    resultEl.className = 'quiz-result show fail';
+    resultEl.innerHTML = `📚 حصلت على ${score} من ${total} — راجع الإجابات وحاول مرة أخرى`;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   MODAL
+   ══════════════════════════════════════════════════════ */
 function openLesson(i) {
   const l = lessons[i];
   document.getElementById('modal-title').textContent = l.title;
-  document.getElementById('modal-sub').textContent = l.sub;
-  document.getElementById('lesson-video').src = l.video;
-  document.getElementById('lesson-content').innerHTML = l.content;
+  document.getElementById('modal-sub').textContent   = l.sub;
+
+  const preId  = `pre-${i}`;
+  const postId = `post-${i}`;
+
+  const bodyHTML = `
+    ${buildQuiz(l.preQuiz, preId, '📝 اختبار قبلي — أجب قبل مشاهدة الفيديو')}
+
+    <div style="margin-top:1.5rem">
+      <div class="video-wrap">
+        <iframe src="${l.video}" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <a href="${l.ytSearch}" target="_blank" rel="noopener"
+         style="display:flex;align-items:center;justify-content:center;gap:.6rem;
+                margin-top:.8rem;padding:.75rem;border-radius:8px;text-decoration:none;
+                background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.25);
+                color:#ff6b6b;font-weight:700;font-size:.9rem;">
+        ▶ ابحث عن المزيد من الفيديوهات العربية على يوتيوب
+      </a>
+    </div>
+
+    <div class="lesson-content">${l.content}</div>
+
+    ${buildQuiz(l.postQuiz, postId, '📋 اختبار بعدي — اختبر ما تعلمته')}
+  `;
+
+  document.getElementById('modal-body').innerHTML = bodyHTML;
   document.getElementById('overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeLesson() {
   document.getElementById('overlay').classList.remove('open');
-  document.getElementById('lesson-video').src = '';
+  document.getElementById('modal-body').innerHTML = '';
   document.body.style.overflow = '';
 }
 
 function handleOverlayClick(e) {
   if (e.target === document.getElementById('overlay')) closeLesson();
 }
-
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeLesson(); });
 
-// Scroll reveal
+/* Scroll reveal */
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+}, { threshold:0.1 });
 document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
-// Stagger card animations
+/* Stagger */
 document.querySelectorAll('.course-card').forEach((c,i) => {
-  c.style.transitionDelay = (i * 0.07) + 's';
+  c.style.transitionDelay = (i * 0.07)+'s';
 });
 
-// Nav active link
-const sections = document.querySelectorAll('section[id]');
+/* Nav active */
+const navSections = document.querySelectorAll('section[id]');
 window.addEventListener('scroll', () => {
   let cur = '';
-  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navSections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.classList.toggle('active', a.getAttribute('href') === '#'+cur);
   });
